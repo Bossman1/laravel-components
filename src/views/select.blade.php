@@ -12,8 +12,8 @@
 
 <!-- Select -->
 <select
-        @if($disabled)  disabled="disabled" @endif
-name="{{ $name }}"
+   @if($disabled)  disabled="disabled" @endif
+        name="{{ $name }}"
         id="{{ $id }}"
         data-hs-select='{
  @if($hasSearch)  "hasSearch": true, @endif
