@@ -19,6 +19,7 @@
 
             $iconPosition  = $option['iconPosition'] ?? 'right';
             $id  = $option['id']  ?? uniqid();
+            $name  = $option['name']  ?? uniqid();
         @endphp
         <label
                 for="{{ $id }}"
@@ -100,3 +101,6 @@
         </div>
     </label>
 @endif
+
+
+
