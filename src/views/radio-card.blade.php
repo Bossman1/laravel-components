@@ -1,11 +1,12 @@
 @props([
     'id' => 'id_'.uniqid(),
-    'name' => '',
+    'name' => 'name_'.uniqid(),
     'value' => '',
     'label' => '',
     'labelDescription' => '',
     'icon' => null,
     'iconPosition' => 'right', // right | left
+    'iconClass' => 'h-[48px] w-[48px]',
     'options' => [],
     'textPosition' => 'bottom' // bottom | right
 ])
@@ -16,31 +17,31 @@
 
         @php
 
-        $iconPosition  = $option['iconPosition'] ?? 'right';
-        $id  = $option['id']  ?? uniqid();
+            $iconPosition  = $option['iconPosition'] ?? 'right';
+            $id  = $option['id']  ?? uniqid();
         @endphp
         <label
-            for="{{ $id }}"
-            class="flex-1 items-start gap-3 p-4 border border-sky-200 rounded-[12px] bg-sky-50 cursor-pointer hover:bg-sky-100 transition">
+                for="{{ $id }}"
+                class="flex-1 items-start gap-3 p-4 border border-sky-200 rounded-[12px] bg-sky-50 cursor-pointer hover:bg-sky-100 transition">
             <!-- Radio + Label stacked vertically -->
             <div class="flex @if($textPosition == 'right') flex-row gap-2 @else flex-col @endif  items-start">
                 <div class="flex justify-start items-center gap-[8px]">
                     @if($iconPosition ==='left')
                         <div>
-                            <x-dynamic-component :component="$option['icon']" class="h-[48px] w-[48px]" />
+                            <x-dynamic-component :component="$option['icon']" class="{{ $iconClass }}" />
                         </div>
                     @endif
                     <input
-                        id="{{ $id }}"
-                        type="radio"
-                        name="bordered-radio"
-                        value="{{ $option['value'] ??  '' }}"
-                        class="w-[16px] h-[16px] text-sky-600 bg-gray-100 border-gray-300 focus:ring-sky-600 focus:ring-1"
-                        {{ isset($option['checked']) ? 'checked': '' }}
+                            id="{{ $id }}"
+                            type="radio"
+                            name="{{ $name }}"
+                            value="{{ $option['value'] ??  '' }}"
+                            class="w-[16px] h-[16px] text-sky-600 bg-gray-100 border-gray-300 focus:ring-sky-600 focus:ring-1"
+                            {{ isset($option['checked']) ? 'checked': '' }}
                     />
                     @if($iconPosition ==='right')
                         <div>
-                            <x-dynamic-component :component="$option['icon']" class="h-[48px] w-[48px]" />
+                            <x-dynamic-component :component="$option['icon']" class="{{ $iconClass }}" />
                         </div>
                     @endif
                 </div>
@@ -61,8 +62,8 @@
     @endforeach
 @else
     <label
-        for="{{ $id }}"
-        class="flex-1 items-start gap-3 p-4 border border-sky-200 rounded-[12px] bg-sky-50 cursor-pointer hover:bg-sky-100 transition">
+            for="{{ $id }}"
+            class="flex-1 items-start gap-3 p-4 border border-sky-200 rounded-[12px] bg-sky-50 cursor-pointer hover:bg-sky-100 transition">
         <!-- Radio + Label stacked vertically -->
         <div class="flex @if($textPosition == 'right') flex-row @else flex-col @endif items-start">
             <div class="flex justify-start items-center gap-[8px]">
@@ -72,12 +73,12 @@
                     </div>
                 @endif
                 <input
-                    id="{{ $id }}"
-                    type="radio"
-                    name="bordered-radio"
-                    value="{{ $value ?? '' }}"
-                    class="w-[16px] h-[16px] text-sky-600 bg-gray-100 border-gray-300 focus:ring-sky-600 focus:ring-1"
-                    checked
+                        id="{{ $id }}"
+                        type="radio"
+                        name="{{ $name }}"
+                        value="{{ $value ?? '' }}"
+                        class="w-[16px] h-[16px] text-sky-600 bg-gray-100 border-gray-300 focus:ring-sky-600 focus:ring-1"
+                        checked
                 />
                 @if($iconPosition ==='right')
                     <div>
