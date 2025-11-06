@@ -100,6 +100,3 @@
         </div>
     </label>
 @endif
-
-
-
