@@ -12,15 +12,15 @@
 
 <!-- Select -->
 <select
-@if($disabled)  disabled="disabled" @endif
- name="{{ $name }}"
- id="{{ $id }}"
- data-hs-select='{
+        @if($disabled)  disabled="disabled" @endif
+name="{{ $name }}"
+        id="{{ $id }}"
+        data-hs-select='{
  @if($hasSearch)  "hasSearch": true, @endif
   "placeholder": "{{ $placeholder }}",
   "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
   "searchClasses": "block w-full sm:text-sm border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 before:absolute before:inset-0 before:z-1 border-neutral-700 text-neutral-400 placeholder-neutral-500 py-1.5 sm:py-2 px-3",
-  "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative ps-4 pe-9 flex gap-x-2 text-nowrap cursor-pointer bg-white rounded-[12px] border-[1px] border-slate-300 text-start text-[16px] focus:text-blue-600 focus:ring-1 focus:ring-blue-500 pt-[16px] h-[56px] rounded-[12px] text-slate-600 font-custom-regular col-span-2 {{ $class }}",
+  "toggleClasses": "hs-select-disabled:cursor-not-allowed hs-select-disabled:opacity-50 hs-select-disabled:ring-0 hs-select-disabled:focus:text-slate-600 relative ps-4 pe-9 flex gap-x-2 text-nowrap cursor-pointer bg-white rounded-[12px] border-[1px] border-slate-300 text-start text-[16px] focus:text-blue-600 focus:ring-1 focus:ring-blue-500 pt-[16px] h-[56px] rounded-[12px] text-slate-600 font-custom-regular col-span-2 {{ $class }}",
   "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300",
   "dropdownVerticalFixedPlacement": "bottom",
   "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-hidden focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50",
@@ -34,4 +34,5 @@
         @endforeach
     @endif
 </select>
+
 <!-- End Select -->
