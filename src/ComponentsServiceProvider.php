@@ -29,8 +29,7 @@ class ComponentsServiceProvider extends ServiceProvider
         if (is_dir($componentsPath)) {
             foreach (glob($componentsPath . '/*.blade.php') as $file) {
                 $name = strtolower(basename($file, '.blade.php'));
-                Blade::component('nickkh::components.' . $name, $name);
-                // <x-button> now works
+                Blade::component('nickkh::components.' . $name, $name); // alias = $name
             }
         }
     }
