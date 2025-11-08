@@ -43,6 +43,7 @@ class ComponentsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \NickKh\Components\Commands\MergePackageJson::class,
+                \NickKh\Components\Commands\PostInstallSetup::class, // <--- new
             ]);
         }
     }

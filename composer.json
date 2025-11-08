@@ -15,15 +15,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@php -r \"if (file_exists(__DIR__ . '/package.json')) { system('npm install --prefix ' . __DIR__); }\"",
-            "@php artisan nickkh:merge-packagejson || true"
+            "@php artisan nickkh:setup || true"
         ],
         "post-update-cmd": [
-            "@php -r \"if (file_exists(__DIR__ . '/package.json')) { system('npm install --prefix ' . __DIR__); }\"",
-            "@php artisan nickkh:merge-packagejson || true"
-        ],
-        "post-autoload-dump": [
-            "@php artisan nickkh:merge-packagejson || true"
+            "@php artisan nickkh:setup || true"
         ]
     },
     "extra": {
