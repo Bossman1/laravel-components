@@ -9,10 +9,10 @@ class ComponentsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        // Load views (adjust path if yours differs)
+        // Load views namespace
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nickkh');
 
-        // Publish views (if you want users to override them)
+        // Publish views (optional)
         $this->publishes([
             __DIR__ . '/../resources/views' => resource_path('views/vendor/nickkh'),
         ], 'views');
@@ -24,14 +24,12 @@ class ComponentsServiceProvider extends ServiceProvider
             __DIR__ . '/../stubs/package.json' => base_path('nickkh-package.json'),
         ], 'nickkh-assets');
 
-        // --- Option A: Register all Blade view components automatically ---
-        $componentsPath = __DIR__ . '/../resources/views/components';
-        if (is_dir($componentsPath)) {
-            foreach (glob($componentsPath . '/*.blade.php') as $file) {
-                $name = strtolower(basename($file, '.blade.php')); // e.g. 'button'
-                Blade::component('nickkh::' . $name, $name);
-                // Now <x-button> will work
-            }
+        // Automatically register all blade components in views folder
+        $componentsPath = __DIR__ . '/../resources/views';
+        foreach (glob($componentsPath . '/*.blade.php') as $file) {
+            $name = strtolower(basename($file, '.blade.php'));
+            Blade::component('nickkh::' . $name, $name);
+            // <x-button> now works
         }
     }
 
