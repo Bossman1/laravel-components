@@ -32,7 +32,7 @@
 
     // === Variants ===
     $variantClasses = [
-        'primary'     => 'bg-red-700 text-white hover:bg-sky-900',
+        'primary'     => 'bg-sky-700 text-white hover:bg-sky-900',
         'secondary'   => 'bg-[#00598A] text-white hover:bg-white',
         'outline'     => 'border border-[#CAD5E2] text-[#314158] hover:bg-sky-900 hover:text-white',
         'transparent' => 'bg-transparent text-[#314158] hover:bg-sky-900 hover:text-white border-0',
