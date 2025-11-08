@@ -24,12 +24,14 @@ class ComponentsServiceProvider extends ServiceProvider
             __DIR__ . '/../stubs/package.json' => base_path('nickkh-package.json'),
         ], 'nickkh-assets');
 
-        // Automatically register all blade components in views folder
-        $componentsPath = __DIR__ . '/../resources/views';
-        foreach (glob($componentsPath . '/*.blade.php') as $file) {
-            $name = strtolower(basename($file, '.blade.php'));
-            Blade::component('nickkh::' . $name, $name);
-            // <x-button> now works
+        // Automatically register all blade components in resources/views/components
+        $componentsPath = __DIR__ . '/../resources/views/components';
+        if (is_dir($componentsPath)) {
+            foreach (glob($componentsPath . '/*.blade.php') as $file) {
+                $name = strtolower(basename($file, '.blade.php'));
+                Blade::component('nickkh::components.' . $name, $name);
+                // <x-button> now works
+            }
         }
     }
 
