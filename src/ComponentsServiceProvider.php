@@ -9,29 +9,33 @@ class ComponentsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        // Load package views
+        // Load views (adjust path if yours differs)
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nickkh');
 
-        // Publish package views for overriding
+        // Publish views (if you have views)
         $this->publishes([
             __DIR__ . '/../resources/views' => resource_path('views/vendor/nickkh'),
         ], 'views');
 
-        // Register Blade components automatically
+        // Publish stubs (js/css/package.json)
+        $this->publishes([
+            __DIR__ . '/../stubs/js/components.js' => resource_path('js/components/components.js'),
+            __DIR__ . '/../stubs/css/components.css' => resource_path('css/components/components.css'),
+            __DIR__ . '/../stubs/package.json' => base_path('nickkh-package.json'),
+        ], 'nickkh-assets');
+
+        // Optionally register Blade components automatically (if you use classes)
         $componentsPath = __DIR__ . '/View/Components';
         if (is_dir($componentsPath)) {
             foreach (glob($componentsPath . '/*.php') as $file) {
                 $className = 'NickKh\\Components\\View\\Components\\' . basename($file, '.php');
                 if (class_exists($className)) {
-                    Blade::component($className, strtolower(basename($file, '.php')), 'nickkh');
+                    // register component as <x-nickkh-{name}>
+                    $alias = 'nickkh-' . strtolower(basename($file, '.php'));
+                    Blade::component($className, $alias);
                 }
             }
         }
-
-        $this->publishes([
-            __DIR__.'/../stubs/package.json' => base_path('package.json'),
-        ], 'nickkh-packagejson');
-
     }
 
     public function register()
