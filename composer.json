@@ -13,6 +13,14 @@
             "NickKh\\Components\\": "src/"
         }
     },
+    "scripts": {
+        "post-install-cmd": [
+            "@php -r \"if (file_exists(__DIR__ . '/package.json')) { system('npm install --prefix ' . __DIR__); }\""
+        ],
+        "post-update-cmd": [
+            "@php -r \"if (file_exists(__DIR__ . '/package.json')) { system('npm install --prefix ' . __DIR__); }\""
+        ]
+    },
     "extra": {
         "laravel": {
             "providers": [
