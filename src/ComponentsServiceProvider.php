@@ -12,7 +12,7 @@ class ComponentsServiceProvider extends ServiceProvider
         // Load views (adjust path if yours differs)
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nickkh');
 
-        // Publish views (if you have views)
+        // Publish views (if you want users to override them)
         $this->publishes([
             __DIR__ . '/../resources/views' => resource_path('views/vendor/nickkh'),
         ], 'views');
@@ -24,16 +24,13 @@ class ComponentsServiceProvider extends ServiceProvider
             __DIR__ . '/../stubs/package.json' => base_path('nickkh-package.json'),
         ], 'nickkh-assets');
 
-        // Optionally register Blade components automatically (if you use classes)
-        $componentsPath = __DIR__ . '/View/Components';
+        // --- Option A: Register all Blade view components automatically ---
+        $componentsPath = __DIR__ . '/../resources/views/components';
         if (is_dir($componentsPath)) {
-            foreach (glob($componentsPath . '/*.php') as $file) {
-                $className = 'NickKh\\Components\\View\\Components\\' . basename($file, '.php');
-                if (class_exists($className)) {
-                    // register component as <x-nickkh-{name}>
-                    $alias = 'nickkh-' . strtolower(basename($file, '.php'));
-                    Blade::component($className, $alias);
-                }
+            foreach (glob($componentsPath . '/*.blade.php') as $file) {
+                $name = strtolower(basename($file, '.blade.php')); // e.g. 'button'
+                Blade::component('nickkh::components.' . $name, $name);
+                // Now <x-button> will work
             }
         }
     }
@@ -43,7 +40,7 @@ class ComponentsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \NickKh\Components\Commands\MergePackageJson::class,
-                \NickKh\Components\Commands\PostInstallSetup::class, // <--- new
+                \NickKh\Components\Commands\PostInstallSetup::class,
             ]);
         }
     }
