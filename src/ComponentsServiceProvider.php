@@ -36,6 +36,10 @@ class ComponentsServiceProvider extends ServiceProvider
 
     public function register()
     {
-        //
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \NickKh\Components\Commands\MergePackageJson::class,
+            ]);
+        }
     }
 }
