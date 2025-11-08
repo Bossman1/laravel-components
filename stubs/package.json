@@ -6,6 +6,6 @@
     "flowbite": "^3.0.0",
     "@splidejs/splide": "^4.0.0",
     "preline": "^3.1.0",
-    "lazysizes": "^5.3.2",
+    "lazysizes": "^5.3.2"
   }
 }
