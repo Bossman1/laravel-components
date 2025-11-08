@@ -1,0 +1,14 @@
+{
+  "name": "laravel-components",
+  "version": "1.0.0",
+  "description": "Shared Tailwind + Flowbite + Splide components for Laravel",
+  "private": true,
+  "devDependencies": {
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.1.11",
+    "flowbite": "^3.0.0",
+    "@splidejs/splide": "^4.0.0",
+    "preline": "^3.1.0"
+  }
+}

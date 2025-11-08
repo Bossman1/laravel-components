@@ -27,6 +27,11 @@ class ComponentsServiceProvider extends ServiceProvider
                 }
             }
         }
+
+        $this->publishes([
+            __DIR__.'/../stubs/package.json' => base_path('package.json'),
+        ], 'nickkh-packagejson');
+
     }
 
     public function register()
